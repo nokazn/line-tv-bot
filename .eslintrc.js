@@ -34,6 +34,8 @@ module.exports = {
         json: 'never',
       },
     ],
+    'import/no-unresolved': 0,
+    'import/prefer-default-export': 0,
     indent: [2, 2],
     'lines-between-class-members': 0,
     'no-console': 0,

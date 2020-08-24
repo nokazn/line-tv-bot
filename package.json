@@ -4,6 +4,8 @@
   "description": "Serverless webpack example using Typescript",
   "main": "handler.js",
   "scripts": {
+    "lint": "eslint ./src/**/*.ts{,x} --ignore-path .eslintignore",
+    "lint:fix": "eslint ./src/**/*.ts{,x} --ignore-path .eslintignore --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
