@@ -9,6 +9,11 @@
     "target": "es2017",
     "outDir": "lib"
   },
+  "paths": {
+    "@src/*": ["src/*"],
+    "@queries/*": ["queries/*"],
+    "@tests/*": ["tests/*"]
+  },
   "include": ["./**/*.ts"],
   "exclude": [
     "node_modules/**/*",

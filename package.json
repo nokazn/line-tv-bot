@@ -6,24 +6,32 @@
   "scripts": {
     "lint": "eslint ./src/**/*.ts{,x} --ignore-path .eslintignore",
     "lint:fix": "eslint ./src/**/*.ts{,x} --ignore-path .eslintignore --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "tsc": "tsc --noEmit",
+    "test": "cross-env NODE_ENV=test jest --ci --verbose"
   },
   "dependencies": {
     "source-map-support": "^0.5.10"
   },
   "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-typescript": "^7.10.4",
     "@types/aws-lambda": "^8.10.17",
+    "@types/jest": "^26.0.14",
     "@types/node": "^10.12.18",
     "@types/serverless": "^1.72.5",
     "@types/webpack": "^4.41.22",
     "@typescript-eslint/eslint-plugin": "^3.10.0",
     "@typescript-eslint/parser": "^3.10.0",
+    "babel-jest": "^26.5.2",
+    "cross-env": "^7.0.2",
     "eslint": "^7.7.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jest": "^23.20.0",
     "fork-ts-checker-webpack-plugin": "^3.0.1",
+    "jest": "^26.5.3",
     "prettier": "^2.1.0",
     "serverless-webpack": "^5.3.5",
     "ts-loader": "^5.3.3",
