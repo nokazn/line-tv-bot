@@ -7,11 +7,12 @@
     "noUnusedParameters": true,
     "sourceMap": true,
     "target": "es2017",
-    "outDir": "lib"
+    "outDir": "lib",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
   },
   "paths": {
     "@src/*": ["src/*"],
-    "@queries/*": ["queries/*"],
     "@tests/*": ["tests/*"]
   },
   "include": ["./**/*.ts"],
