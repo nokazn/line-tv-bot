@@ -10,3 +10,7 @@ jspm_packages
 
 # Log files
 *.log
+
+.eslintcache
+.env
+!.env.sample

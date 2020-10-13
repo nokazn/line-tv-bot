@@ -4,6 +4,7 @@
   "description": "Serverless webpack example using Typescript",
   "main": "handler.js",
   "scripts": {
+    "dev": "cross-env TS_NODE_PROJECT=\"tsconfig.webpack.json\" serverless offline",
     "lint": "eslint ./src/**/*.ts{,x} --ignore-path .eslintignore",
     "lint:fix": "eslint ./src/**/*.ts{,x} --ignore-path .eslintignore --fix",
     "tsc": "tsc --noEmit",
@@ -30,6 +31,10 @@
     "jest": "^26.5.3",
     "prettier": "^2.1.0",
     "serverless": "^2.6.0",
+    "serverless-create-global-dynamodb-table": "^3.0.0",
+    "serverless-iam-roles-per-function": "^2.0.2",
+    "serverless-offline": "^6.8.0",
+    "serverless-prune-plugin": "^1.4.3",
     "serverless-webpack": "^5.3.5",
     "ts-jest": "^26.4.1",
     "ts-loader": "^8.0.4",

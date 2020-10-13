@@ -1,7 +1,7 @@
 import * as path from 'path';
-import * as slsw from 'serverless-webpack';
+import slsw from 'serverless-webpack';
 import nodeExternals from 'webpack-node-externals';
-import * as ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import type { Configuration } from 'webpack';
 
 const config: Configuration = {
@@ -43,12 +43,13 @@ const config: Configuration = {
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin({
-      eslint: true,
-      eslintOptions: {
-        cache: true
-      }
-    })
+      eslint: {
+        files: './src/**/*.{t,j}s{,x}',
+        enabled: true,
+        options: { cache: true },
+      },
+    }),
   ],
 };
 
-export default config;
+module.exports = config;

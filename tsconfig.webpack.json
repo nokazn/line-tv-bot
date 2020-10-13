@@ -1,0 +1,10 @@
+{
+  // https://webpack.js.org/configuration/configuration-languages/#typescript
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true
+  }
+}
