@@ -6,11 +6,12 @@ export const hello: APIGatewayProxyHandler = async (event) => {
     statusCode: 200,
     body: JSON.stringify(
       {
-        message: 'Go Serverless Webpack (Typescript) v1.0! Your function executed successfully!',
+        data: event.body,
+        message: `Your function executed successfully! by ${event.httpMethod}`,
         input: event,
       },
       null,
-      2,
+      2
     ),
   };
 };

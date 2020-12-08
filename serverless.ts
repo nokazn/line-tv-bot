@@ -34,9 +34,9 @@ const serverlessConfiguration: Serverless = {
     name: 'aws',
     runtime: 'nodejs12.x',
     // eslint-disable-next-line no-template-curly-in-string
-    stage: "${opt:state, 'local'}",
+    stage: "${opt:state, 'dev'}",
     // eslint-disable-next-line no-template-curly-in-string
-    region: "${opt:region, 'us-east-2'}",
+    region: "${opt:region, 'ap-northeast-1'}",
     apiGateway: {
       minimumCompressionSize: 1024,
     },
@@ -68,6 +68,9 @@ const serverlessConfiguration: Serverless = {
         },
       ],
     },
+  },
+  resources: {
+    Resources: [],
   },
 };
 
