@@ -1,6 +1,6 @@
 import type { Serverless } from 'serverless/aws';
 
-const serverlessConfiguration: Serverless = {
+const config: Serverless = {
   service: {
     name: 'line-tvbot',
     // app and org for use with dashboard.serverless.com
@@ -73,4 +73,4 @@ const serverlessConfiguration: Serverless = {
   },
 };
 
-module.exports = serverlessConfiguration;
+export default config;
