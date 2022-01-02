@@ -11,16 +11,15 @@ module.exports = {
   extends: [
     'plugin:@typescript-eslint/eslint-recommended',
     'airbnb-base',
-    "plugin:jest/all",
+    'plugin:jest/all',
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
     'prettier',
-    'prettier/@typescript-eslint',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 2018,
+    ecmaVersion: 2020,
     sourceType: 'module',
   },
   plugins: ['@typescript-eslint', 'jest'],
@@ -29,6 +28,7 @@ module.exports = {
     indent: [2, 2, { SwitchCase: 1 }],
     'lines-between-class-members': 0,
     'no-console': 1,
+    'arrow-body-style': 0,
 
     /**
      * eslint-plugin-import

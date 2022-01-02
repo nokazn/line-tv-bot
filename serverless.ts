@@ -1,6 +1,7 @@
+// eslint-disable-next-line import/no-import-module-exports
 import type { Serverless } from 'serverless/aws';
 
-const serverlessConfiguration: Serverless = {
+const config: Serverless = {
   service: {
     name: 'line-tvbot',
     // app and org for use with dashboard.serverless.com
@@ -14,10 +15,10 @@ const serverlessConfiguration: Serverless = {
       includeModules: true,
     },
     'serverless-iam-roles-per-function': {
-      defaultInjerit: true,
+      defaultInherit: true,
     },
     globalTables: {
-      regions: ['us-east-2'],
+      regions: ['ap-northeast-1'],
     },
     prune: {
       automatic: true,
@@ -34,11 +35,11 @@ const serverlessConfiguration: Serverless = {
   ],
   provider: {
     name: 'aws',
-    runtime: 'nodejs12.x',
+    runtime: 'nodejs14.x',
     // eslint-disable-next-line no-template-curly-in-string
     stage: "${opt:state, 'local'}",
     // eslint-disable-next-line no-template-curly-in-string
-    region: "${opt:region, 'us-east-2'}",
+    region: "${opt:region, 'ap-northeast-1'}",
     apiGateway: {
       minimumCompressionSize: 1024,
     },
@@ -73,4 +74,4 @@ const serverlessConfiguration: Serverless = {
   },
 };
 
-module.exports = serverlessConfiguration;
+module.exports = config;

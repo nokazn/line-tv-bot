@@ -1,3 +1,4 @@
+/* eslint-disable import/no-import-module-exports */
 import * as path from 'path';
 import slsw from 'serverless-webpack';
 import nodeExternals from 'webpack-node-externals';
@@ -8,7 +9,7 @@ const config: Configuration = {
   context: __dirname,
   mode: slsw.lib.webpack.isLocal ? 'development' : 'production',
   entry: slsw.lib.entries,
-  devtool: slsw.lib.webpack.isLocal ? 'cheap-module-eval-source-map' : 'source-map',
+  devtool: slsw.lib.webpack.isLocal ? 'eval-cheap-module-source-map' : 'source-map',
   resolve: {
     extensions: ['.mjs', '.json', '.ts'],
     symlinks: false,
