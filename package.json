@@ -12,11 +12,11 @@
   "scripts": {
     "dev": "cross-env TS_NODE_PROJECT=\"tsconfig.webpack.json\" serverless offline",
     "format": "prettier ./**.{t,j}s --write",
-    "format:check": "prettier ./**.{t,j}s --check",
-    "lint": "eslint ./**.{t,j}s --ignore-path .eslintignore",
-    "lint:fix": "eslint ./**.{t,j}s --ignore-path .eslintignore --fix",
+    "format:check": "yarn format --check",
+    "lint": "eslint ./**.{t,j}s --ignore-path .eslintignore  --report-unused-disable-directives",
+    "lint:fix": "yarn lint --fix",
     "type-check": "tsc --noEmit",
-    "type-check:watch": "tsc --noEmit --watch",
+    "type-check:watch": "yarn type-check --watch",
     "test": "cross-env NODE_ENV=test jest",
     "test:ci": "cross-env NODE_ENV=test jest --ci"
   },
