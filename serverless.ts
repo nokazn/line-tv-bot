@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-import-module-exports
 import type { Serverless } from 'serverless/aws';
 
 const config: Serverless = {
@@ -73,4 +74,4 @@ const config: Serverless = {
   },
 };
 
-export default config;
+module.exports = config;

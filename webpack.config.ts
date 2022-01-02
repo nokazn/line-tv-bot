@@ -1,3 +1,4 @@
+/* eslint-disable import/no-import-module-exports */
 import * as path from 'path';
 import slsw from 'serverless-webpack';
 import nodeExternals from 'webpack-node-externals';
@@ -52,4 +53,4 @@ const config: Configuration = {
   ],
 };
 
-export default config;
+module.exports = config;
