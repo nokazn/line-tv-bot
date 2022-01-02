@@ -1,7 +1,13 @@
 {
   "name": "line-tvbot",
   "version": "1.0.0",
-  "description": "Serverless webpack example using Typescript",
+  "private": true,
+  "description": "TV programs notification bot for LINE",
+  "license": "MIT",
+  "author": {
+    "name": "nokazn",
+    "url": "https://github.com/nokazn"
+  },
   "main": "handler.js",
   "scripts": {
     "dev": "cross-env TS_NODE_PROJECT=\"tsconfig.webpack.json\" serverless offline",
@@ -46,7 +52,5 @@
     "typescript": "^3.2.4",
     "webpack": "^4.29.0",
     "webpack-node-externals": "^1.7.2"
-  },
-  "author": "The serverless webpack authors (https://github.com/elastic-coders/serverless-webpack)",
-  "license": "MIT"
+  }
 }
