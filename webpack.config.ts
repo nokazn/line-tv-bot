@@ -2,7 +2,6 @@
 import * as path from 'path';
 import slsw from 'serverless-webpack';
 import nodeExternals from 'webpack-node-externals';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import type { Configuration } from 'webpack';
 
