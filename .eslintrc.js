@@ -16,7 +16,6 @@ module.exports = {
     'plugin:import/warnings',
     'plugin:import/typescript',
     'prettier',
-    'prettier/@typescript-eslint',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -29,6 +28,7 @@ module.exports = {
     indent: [2, 2, { SwitchCase: 1 }],
     'lines-between-class-members': 0,
     'no-console': 1,
+    'arrow-body-style': 0,
 
     /**
      * eslint-plugin-import
