@@ -2,6 +2,7 @@
 import * as path from 'path';
 import slsw from 'serverless-webpack';
 import nodeExternals from 'webpack-node-externals';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import type { Configuration } from 'webpack';
 
@@ -9,7 +10,7 @@ const config: Configuration = {
   context: __dirname,
   mode: slsw.lib.webpack.isLocal ? 'development' : 'production',
   entry: slsw.lib.entries,
-  devtool: slsw.lib.webpack.isLocal ? 'cheap-module-eval-source-map' : 'source-map',
+  devtool: slsw.lib.webpack.isLocal ? 'eval-cheap-module-source-map' : 'source-map',
   resolve: {
     extensions: ['.mjs', '.json', '.ts'],
     symlinks: false,
