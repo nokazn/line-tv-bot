@@ -15,10 +15,10 @@ const config: Serverless = {
       includeModules: true,
     },
     'serverless-iam-roles-per-function': {
-      defaultInjerit: true,
+      defaultInherit: true,
     },
     globalTables: {
-      regions: ['us-east-2'],
+      regions: ['ap-northeast-1'],
     },
     prune: {
       automatic: true,
@@ -35,11 +35,11 @@ const config: Serverless = {
   ],
   provider: {
     name: 'aws',
-    runtime: 'nodejs12.x',
+    runtime: 'nodejs14.x',
     // eslint-disable-next-line no-template-curly-in-string
     stage: "${opt:state, 'local'}",
     // eslint-disable-next-line no-template-curly-in-string
-    region: "${opt:region, 'us-east-2'}",
+    region: "${opt:region, 'ap-northeast-1'}",
     apiGateway: {
       minimumCompressionSize: 1024,
     },
