@@ -11,9 +11,10 @@
   "main": "handler.js",
   "scripts": {
     "prepare": "husky install",
-    "format": "prettier ./**.{t,j}s --write",
+    "format": "prettier ./{,**/}*.{t,j}s --write",
     "format:check": "yarn format --check",
     "spell-check": "cspell ./{,**/}*.{t,j}s",
+    "lint": "eslint ./*.{t,j}s ./src/{,**/}*.ts --ignore-path .eslintignore --report-unused-disable-directives",
     "lint:fix": "yarn lint --fix",
     "type-check": "tsc --noEmit",
     "type-check:watch": "yarn type-check --watch",
