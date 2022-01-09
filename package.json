@@ -10,6 +10,7 @@
   },
   "main": "handler.js",
   "scripts": {
+    "prepare": "husky install",
     "format": "prettier ./**.{t,j}s --write",
     "format:check": "yarn format --check",
     "lint": "eslint ./**.{t,j}s --ignore-path .eslintignore  --report-unused-disable-directives",
@@ -40,6 +41,7 @@
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jest": "^25.3.4",
     "fork-ts-checker-webpack-plugin": "^6.5.0",
+    "husky": "^7.0.4",
     "jest": "^27.4.5",
     "prettier": "^2.5.1",
     "serverless": "^2.70.0",
