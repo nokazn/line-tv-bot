@@ -18,7 +18,7 @@ defaults:
     shell: "bash"
 
 jobs:
-  ci:
+  static-check:
     runs-on: "ubuntu-20.04"
     steps:
       - uses: actions/checkout@v2

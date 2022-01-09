@@ -5,6 +5,10 @@ on:
     branches:
       - "main"
       - "develop"
+    paths:
+      - "**.ts"
+      - "package.json"
+      - "yarn.lock"
 
 jobs:
   deploy-lambda-functions:
