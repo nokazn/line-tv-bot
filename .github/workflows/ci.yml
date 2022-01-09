@@ -27,7 +27,7 @@ jobs:
           node-version: '14'
           cache: 'yarn'
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --frozen-lockfile
       - name: Static Check
         run: |
           yarn format:check
