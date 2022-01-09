@@ -49,7 +49,7 @@ const config: Serverless = {
     iamRoleStatements: [
       {
         Effect: 'Allow',
-        Action: ['xrax:PutTraceSecments', 'xray:PutTelemetryRecords'],
+        Action: ['xray:PutTraceSegments', 'xray:PutTelemetryRecords'],
         Resource: '*',
       },
     ],
