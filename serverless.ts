@@ -2,13 +2,9 @@
 import type { Serverless } from 'serverless/aws';
 
 const config: Serverless = {
-  service: {
-    name: 'line-tvbot',
-    // app and org for use with dashboard.serverless.com
-    // app: your-app-name,
-    // org: your-org-name,
-  },
+  service: 'line-tv-bot',
   frameworkVersion: '>=1.72.0',
+  variablesResolutionMode: '20210326',
   custom: {
     webpack: {
       webpackConfig: './webpack.config.ts',
@@ -36,8 +32,7 @@ const config: Serverless = {
   provider: {
     name: 'aws',
     runtime: 'nodejs14.x',
-    // eslint-disable-next-line no-template-curly-in-string
-    stage: "${opt:state, 'local'}",
+    stage: process.env.NODE_ENV,
     // eslint-disable-next-line no-template-curly-in-string
     region: "${opt:region, 'ap-northeast-1'}",
     apiGateway: {
@@ -58,6 +53,7 @@ const config: Serverless = {
         Resource: '*',
       },
     ],
+    lambdaHashingVersion: 20201221,
   },
   functions: {
     hello: {
