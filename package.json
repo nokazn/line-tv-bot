@@ -1,5 +1,5 @@
 {
-  "name": "line-tvbot",
+  "name": "line-tv-bot",
   "version": "1.0.0",
   "private": true,
   "description": "TV programs notification bot for LINE",
@@ -11,10 +11,10 @@
   "main": "handler.js",
   "scripts": {
     "prepare": "husky install",
-    "format": "prettier ./{,**/}*.{t,j}s --write",
+    "format": "prettier \"**/*.{t,j}s\" --write",
     "format:check": "yarn format --check",
-    "spell-check": "cspell ./{,**/}*.{t,j}s",
-    "lint": "eslint ./*.{t,j}s ./src/{,**/}*.ts --ignore-path .eslintignore --report-unused-disable-directives",
+    "spell-check": "cspell \"**/*.{t,j}s\"",
+    "lint": "eslint \"**/*.{t,j}s\" --ignore-path .eslintignore --report-unused-disable-directives",
     "lint:fix": "yarn lint --fix",
     "type-check": "tsc --noEmit",
     "type-check:watch": "yarn type-check --watch",
