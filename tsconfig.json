@@ -2,12 +2,10 @@
   "compilerOptions": {
     "target": "es2020",
     "module": "CommonJS",
-    "lib": ["es2020"],
     "removeComments": true,
     "sourceMap": true,
     "outDir": "lib",
     "rootDir": "./",
-    "baseUrl": "./",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
@@ -15,11 +13,13 @@
     "skipLibCheck": true,
     "strict": true,
     "noUncheckedIndexedAccess": true,
-    "forceConsistentCasingInFileNames": true
-  },
-  "paths": {
-    "@src/*": ["src/*"],
-    "@tests/*": ["tests/*"]
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./",
+    "paths": {
+      "~/*": ["./src/*"],
+      "~~/*": ["./*"],
+      "tests/*": ["./tests/*"]
+    },
   },
   "include": ["./**/*.ts"],
   "exclude": [

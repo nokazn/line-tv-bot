@@ -5,6 +5,9 @@ import nodeExternals from 'webpack-node-externals';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import type { Configuration } from 'webpack';
 
+/** @description プロジェクトルートからの相対パスを返す */
+const fromProjectRoot = (...paths: string[]) => path.resolve(__dirname, ...paths);
+
 const config: Configuration = {
   context: __dirname,
   mode: slsw.lib.webpack.isLocal ? 'development' : 'production',
@@ -14,6 +17,10 @@ const config: Configuration = {
     extensions: ['.mjs', '.json', '.ts'],
     symlinks: false,
     cacheWithContext: false,
+    alias: {
+      '~': fromProjectRoot('./src'),
+      '~~': fromProjectRoot('./'),
+    },
   },
   output: {
     libraryTarget: 'commonjs',
@@ -30,9 +37,9 @@ const config: Configuration = {
         loader: 'ts-loader',
         exclude: [
           [
-            path.resolve(__dirname, 'node_modules'),
-            path.resolve(__dirname, '.serverless'),
-            path.resolve(__dirname, '.webpack'),
+            fromProjectRoot('node_modules'),
+            fromProjectRoot('.serverless'),
+            fromProjectRoot('.webpack'),
           ],
         ],
         options: {
