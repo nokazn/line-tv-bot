@@ -1,6 +1,13 @@
 export type Dictionary<Value = unknown> = Record<string, Value>;
 
-export type Arguments<Func> = Func extends (...args: infer Args) => unknown ? Args : never;
+type Callback = (...args: any[]) => unknown;
+export type Arguments<Func extends Callback> = Func extends (
+  ...args: infer Args
+) => infer ReturnValue
+  ? ReturnValue extends Callback
+    ? [Args, ...Arguments<ReturnValue>]
+    : [Args]
+  : never;
 
 export type TestCase<Input = unknown, Expected = unknown> = {
   name: string;
