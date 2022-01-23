@@ -17,6 +17,10 @@ module.exports = {
       },
     ],
   },
+  moduleNameMapper: {
+    '^~(.*)$': '<rootDir>/src/$1',
+    '^~~(.*)$': '<rootDir>/$1',
+  },
   testMatch: ['**/{src,tests}/**/*.test.ts'],
   testPathIgnorePatterns: ['node_modules'],
 };
