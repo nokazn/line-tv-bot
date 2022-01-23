@@ -8,7 +8,29 @@ import type { Dictionary } from '~/types';
 const BASE_URL = 'https://tvguide.myjcom.jp/search/event/';
 
 const SEARCHBOX_SELECTOR = 'main > form > div.searchbox';
-const CATEGORY_ID_SELECTOR = 'ul > li:first-child input[type="checkbox"].category';
+const LARGE_CATEGORY_ID_SELECTOR = 'ul > li:first-child > div > span';
+
+/**
+ * @description 検索ボックスからカテゴリーの名前と ID の対応を取得
+ */
+const getCategoryRecords = (elements: (SVGElement | HTMLElement)[]) => {
+  return elements.reduce<Dictionary<string>>((records, span) => {
+    const SUBCATEGORY_ID_SELECTOR = 'div > label:not(.all) > input';
+    const inputs = span.nextElementSibling?.querySelectorAll(SUBCATEGORY_ID_SELECTOR);
+    if (inputs == null) {
+      return records;
+    }
+    const category = span.querySelector('label')?.textContent;
+    return [...inputs].reduce((innerRecords, input) => {
+      const id = input.getAttribute('value');
+      const name = input.nextElementSibling?.textContent;
+      if (id == null || name == null) {
+        return innerRecords;
+      }
+      return Object.assign(innerRecords, { [id]: `${category} - ${name}` });
+    }, records);
+  }, {});
+};
 
 /**
  * @description ページの該当要素が表示されたら内容を取得し、ページを閉じる
@@ -19,17 +41,7 @@ const getGenreText =
     return fromPromiseWithError(page.goto(baseUrl, { waitUntil: 'networkidle' }))
       .andThen(() => fromPromiseWithError(page.waitForSelector(SEARCHBOX_SELECTOR)))
       .andThen((searchBox) => {
-        const promise = searchBox.$$eval(CATEGORY_ID_SELECTOR, (elements) => {
-          return elements.reduce<Dictionary<string>>((records, input) => {
-            const id = input.getAttribute('value')?.toLowerCase();
-            const value = input.nextElementSibling?.textContent;
-            if (id == null || value == null) {
-              logger.warn('Category ID or category name is not found.');
-              return records;
-            }
-            return Object.assign(records, { [id]: value });
-          }, {});
-        });
+        const promise = searchBox.$$eval(LARGE_CATEGORY_ID_SELECTOR, getCategoryRecords);
         return fromPromiseWithError(promise);
       });
   };
