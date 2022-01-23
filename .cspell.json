@@ -11,7 +11,8 @@
       "breakpad",
       "swiftshader",
       "keychain",
-      "repost"
+      "repost",
+      "searchbox"
   ],
   "ignorePaths": ["node_modules/**"]
 }

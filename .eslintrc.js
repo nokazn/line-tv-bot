@@ -77,5 +77,7 @@ module.exports = {
     // typescript-eslint の no-unuserd-vars を有効にする
     'no-unused-vars': ALLOW,
     '@typescript-eslint/no-unused-vars': ERROR,
+
+    'jest/require-hook': ALLOW,
   },
 };
