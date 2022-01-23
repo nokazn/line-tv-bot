@@ -21,7 +21,7 @@
     "test": "cross-env NODE_ENV=test jest",
     "test:ci": "cross-env NODE_ENV=test jest --ci",
     "dev": "cross-env TS_NODE_PROJECT=\"tsconfig.webpack.json\" serverless offline",
-    "deploy": "cross-env NODE_ENV=production serverless deploy"
+    "ts-node": "ts-node -r tsconfig-paths/register"
   },
   "dependencies": {
     "neverthrow": "^4.3.1",
@@ -42,6 +42,7 @@
     "@types/node-fetch": "^2.5.12",
     "@types/serverless": "^1.78.40",
     "@types/url-join": "^4.0.1",
+    "@types/webpack-node-externals": "^2.5.3",
     "@typescript-eslint/eslint-plugin": "^5.8.1",
     "@typescript-eslint/parser": "^5.8.1",
     "cross-env": "^7.0.3",
@@ -55,6 +56,7 @@
     "husky": "^7.0.4",
     "jest": "^27.4.7",
     "prettier": "^2.5.1",
+    "regenerator-runtime": "^0.13.9",
     "serverless": "^2.70.0",
     "serverless-create-global-dynamodb-table": "^3.1.1",
     "serverless-iam-roles-per-function": "^3.2.0",
