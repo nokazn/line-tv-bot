@@ -31,6 +31,7 @@ module.exports = {
     'lines-between-class-members': ALLOW,
     'no-console': WARN,
     'arrow-body-style': ALLOW,
+    'no-undef': ALLOW,
 
     // airbnb のスタイルから for of 文の禁止の部分を削除
     // See also https://github.com/airbnb/javascript/blob/master/packages/eslint-config-airbnb-base/rules/style.js#L337-L357
