@@ -3,7 +3,16 @@
   "language": "en",
   // List of words to be always considered correct
   "words": [
-      "slsw"
+      "slsw",
+      "neverthrow",
+      "networkidle",
+      "logform",
+      "backgrounding",
+      "breakpad",
+      "swiftshader",
+      "keychain",
+      "repost",
+      "searchbox"
   ],
   "ignorePaths": ["node_modules/**"]
 }

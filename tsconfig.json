@@ -1,21 +1,24 @@
 {
   "compilerOptions": {
-    "lib": ["es2017"],
+    "target": "es2020",
+    "module": "CommonJS",
     "removeComments": true,
-    "moduleResolution": "node",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "sourceMap": true,
-    "target": "es2017",
     "outDir": "lib",
+    "rootDir": "./",
+    "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     // See https://github.com/TypeStrong/fork-ts-checker-webpack-plugin/issues/685
-    "skipLibCheck": true
-  },
-  "paths": {
-    "@src/*": ["src/*"],
-    "@tests/*": ["tests/*"]
+    "skipLibCheck": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./",
+    "paths": {
+      "~/*": ["./src/*"],
+      "~~/*": ["./*"],
+    },
   },
   "include": ["./**/*.ts"],
   "exclude": [
@@ -24,5 +27,12 @@
     ".webpack/**/*",
     "_warmup/**/*",
     ".vscode/**/*"
-  ]
+  ],
+  "ts-node": {
+    // これがないと .d.ts ファイルが認識されない
+    "files": true,
+    // https://typestrong.org/ts-node/docs/transpilers/
+    "transpileOnly": true,
+    "transpiler": "ts-node/transpilers/swc-experimental"
+  }
 }
