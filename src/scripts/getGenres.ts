@@ -2,7 +2,7 @@ import type { Page } from 'playwright';
 import { ResultAsync } from 'neverthrow';
 import { Browser } from '~/Browser';
 import { logger } from '~/services';
-import { fromPromiseWithError } from '~/utils';
+import { fromPromiseWithError, logError } from '~/utils';
 import type { Dictionary } from '~/types';
 
 const BASE_URL = 'https://tvguide.myjcom.jp/search/event/';
@@ -22,7 +22,7 @@ const getCategoryRecords = (elements: (SVGElement | HTMLElement)[]) => {
     }
     const category = span.querySelector('label')?.textContent;
     return [...inputs].reduce((innerRecords, input) => {
-      const id = input.getAttribute('value');
+      const id = input.getAttribute('value')?.toLowerCase();
       const name = input.nextElementSibling?.textContent;
       if (id == null || name == null) {
         return innerRecords;
@@ -33,17 +33,18 @@ const getCategoryRecords = (elements: (SVGElement | HTMLElement)[]) => {
 };
 
 /**
- * @description ページの該当要素が表示されたら内容を取得し、ページを閉じる
+ * @description ページの該当要素が表示されたら内容を取得する
  */
 const getGenreText =
-  (page: Page) =>
-  (baseUrl: string): ResultAsync<Dictionary<string>, unknown> => {
+  (baseUrl: string) =>
+  (page: Page): ResultAsync<Dictionary<string>, unknown> => {
     return fromPromiseWithError(page.goto(baseUrl, { waitUntil: 'networkidle' }))
       .andThen(() => fromPromiseWithError(page.waitForSelector(SEARCHBOX_SELECTOR)))
       .andThen((searchBox) => {
         const promise = searchBox.$$eval(LARGE_CATEGORY_ID_SELECTOR, getCategoryRecords);
         return fromPromiseWithError(promise);
-      });
+      })
+      .mapErr(logError('Failed to contents on the page.', { baseUrl }));
   };
 
 /**
@@ -52,18 +53,20 @@ const getGenreText =
 const getGenre = (browser: Browser): ResultAsync<Dictionary<string>, unknown> => {
   return browser
     .newPage()
-    .andThen((page) => getGenreText(page)(BASE_URL))
+    .andThen(getGenreText(BASE_URL))
     .andThen((categories) => {
       logger.info('Categories are', categories);
       return browser.closeAndMap(categories);
+    })
+    .mapErr((error) => {
+      logError('Failed to get genres.')(error);
+      return browser.closeAndMap(error);
     });
 };
 
 /**
  * ----------------------------------------------------------------------------------------------------
  */
-const main = () => {
-  return new Browser().launch({ headless: false }).andThen(getGenre);
-};
+const main = () => new Browser().launch({ headless: false }).andThen(getGenre);
 
 main();
