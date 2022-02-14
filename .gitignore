@@ -1,4 +1,4 @@
-# package directories
+# Package directories
 node_modules
 jspm_packages
 
@@ -8,9 +8,18 @@ jspm_packages
 # Webpack directories
 .webpack
 
+# ESLint cache
+.eslintcache
+
+# swc direcotries
+.swc
+
 # Log files
 *.log
 
-.eslintcache
-.env
+# Build output
+lib
+dist
+
+.env*
 !.env.sample
