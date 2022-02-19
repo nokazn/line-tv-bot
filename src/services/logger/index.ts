@@ -10,16 +10,18 @@ declare module 'logform' {
 
 /**
  * @description 文字列にして整形可能か
+ * @package
  */
-const canBeStringified = (value: unknown): boolean => {
+export const canBeStringified = (value: unknown): boolean => {
   const type = Object.prototype.toString.call(value).slice(8, -1);
   return ['Object', 'Array'].some((candidate) => type === candidate);
 };
 
 /**
  * @description 文字列として整形する
+ * @package
  */
-const stringify = (value: unknown): string => {
+export const stringify = (value: unknown): string => {
   return canBeStringified(value) ? JSON.stringify(value, null, 2) : String(value);
 };
 

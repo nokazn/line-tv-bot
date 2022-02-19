@@ -1,6 +1,8 @@
 import { ResultAsync, ok, err } from 'neverthrow';
 import { SafeParseReturnType } from 'zod';
-import { Dictionary } from '../types';
+
+import { logger } from '../services';
+import type { Dictionary } from '../types';
 
 type ErrorCallback<E = unknown> = (error: E) => void;
 
@@ -12,9 +14,9 @@ type ErrorCallback<E = unknown> = (error: E) => void;
 export const logError =
   (message?: string, params?: Dictionary) =>
   <E = unknown>(error: E) => {
-    console.error('[Error]', error);
+    logger.error('[Error]', error);
     if (message != null) {
-      console.error(message, params);
+      logger.error(message, params);
     }
     return error;
   };

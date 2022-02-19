@@ -5,9 +5,7 @@ import { fromPromiseWithError } from './result';
 import type { Dictionary } from '../types';
 
 export const fetch = (url: string, init?: RequestInit): ResultAsync<string, FetchError> => {
-  return fromPromiseWithError<Response, FetchError>(fetcher(url, init)).map((response) =>
-    response.text(),
-  );
+  return fromPromiseWithError<Response, FetchError>(fetcher(url, init)).map((res) => res.text());
 };
 
 type Primitive = string | number | boolean;
