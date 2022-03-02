@@ -14,17 +14,16 @@ module.exports = {
   },
   extends: [
     'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'airbnb-base',
     'plugin:jest/all',
-    'plugin:import/errors',
-    'plugin:import/warnings',
-    'plugin:import/typescript',
     'prettier',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2020,
     sourceType: 'module',
+    project: './tsconfig.json',
   },
   plugins: ['@typescript-eslint', 'jest'],
   rules: {
@@ -54,9 +53,7 @@ module.exports = {
       },
     ],
 
-    /**
-     * eslint-plugin-import
-     */
+    // eslint-plugin-import
     'import/extensions': [
       ERROR,
       {
@@ -68,17 +65,25 @@ module.exports = {
       },
     ],
     'import/no-unresolved': ALLOW,
-    // typescript-eslint の no-use-before-define を有効にする
-    'no-use-before-define': ALLOW,
-    '@typescript-eslint/no-use-before-define': ERROR,
-    // 'import/no-unresolved': [1, { commonjs: true, amd: true }],
     'import/no-extraneous-dependencies': [1, { devDependencies: true }],
     'import/prefer-default-export': ALLOW,
 
-    // typescript-eslint の no-unuserd-vars を有効にする
+    // typescript-eslint のオプションを有効にする
+    'no-use-before-define': ALLOW,
+    '@typescript-eslint/no-use-before-define': ERROR,
     'no-unused-vars': ALLOW,
     '@typescript-eslint/no-unused-vars': ERROR,
 
+    // typescript-eslint 特有のオプション
+    '@typescript-eslint/consistent-type-assertions': [WARN, { assertionStyle: 'never' }],
+    '@typescript-eslint/no-explicit-any': ERROR,
+    '@typescript-eslint/no-non-null-assertion': ERROR,
+    '@typescript-eslint/no-confusing-non-null-assertion': ERROR,
+    '@typescript-eslint/prefer-ts-expect-error': ERROR,
+    '@typescript-eslint/require-await': ALLOW,
+    '@typescript-eslint/no-floating-promises': ALLOW,
+
+    // jest/all
     'jest/require-hook': ALLOW,
   },
 };
