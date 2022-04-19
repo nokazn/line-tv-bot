@@ -1,18 +1,20 @@
 {
   "version": "0.2",
   "language": "en",
-  // List of words to be always considered correct
-  "words": [
-      "slsw",
-      "neverthrow",
-      "networkidle",
-      "logform",
-      "backgrounding",
-      "breakpad",
-      "swiftshader",
-      "keychain",
-      "repost",
-      "searchbox"
+  "dictionaries": [
+    "domain",
+    "packages"
   ],
-  "ignorePaths": ["node_modules/**"]
+  // List of words to be always considered correct
+  "dictionaryDefinitions": [
+    {
+      "name": "domain",
+      "path": "./.config/cspell/domain.txt"
+    },
+    {
+      "name": "packages",
+      "path": "./.config/cspell/packages.txt"
+    }
+  ],
+  "ignorePaths": ["node_modules/**", ".config/cspell"]
 }
