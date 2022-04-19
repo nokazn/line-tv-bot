@@ -32,10 +32,12 @@ export const fromPromiseWithError = <T, E = Error>(
   errorCallback?: ErrorCallback,
 ): ResultAsync<T, E> => {
   return ResultAsync.fromPromise(promise, (error) => {
-    logError()(error as E);
+    logError()(error);
     if (errorCallback != null) {
       errorCallback(error);
     }
+    // TODO:
+    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions -- 一旦キャストしている
     return error as E;
   });
 };

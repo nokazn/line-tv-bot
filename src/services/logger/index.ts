@@ -4,6 +4,7 @@ import { IS_PRODUCTION } from '~/constants';
 /** @description winston が内部的に使っている `logform` の TransformableInfo は実際には symbol のキーも持つ */
 declare module 'logform' {
   export interface TransformableInfo {
+    timestamp: string;
     [k: symbol]: unknown;
   }
 }
@@ -41,7 +42,7 @@ export const logger = createLogger({
         .filter((key) => key in info && Array.isArray(info[key]))
         .map((key) => info[key])
         .flat();
-      const baseLog = `[${info.timestamp as string}] ${info.level} ${info.message}`;
+      const baseLog = `[${info.timestamp}] ${info.level} ${info.message}`;
       return restLogs.reduce<string>((current, rest) => `${current}\n${stringify(rest)}`, baseLog);
     }),
   ),

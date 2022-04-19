@@ -27,10 +27,7 @@ jobs:
           node-version: '14'
           cache: 'yarn'
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile --production=false
       - name: Static Check
         run: |
-          yarn format:check
-          yarn lint
-          yarn type-check
-          yarn test:ci
+          yarn ci
