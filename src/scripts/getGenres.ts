@@ -21,13 +21,14 @@ const getCategoryRecords = (elements: (SVGElement | HTMLElement)[]) => {
       return records;
     }
     const category = span.querySelector('label')?.textContent;
+    const prefix = category != null ? `${category} - ` : '';
     return [...inputs].reduce((innerRecords, input) => {
       const id = input.getAttribute('value')?.toLowerCase();
       const name = input.nextElementSibling?.textContent;
       if (id == null || name == null) {
         return innerRecords;
       }
-      return Object.assign(innerRecords, { [id]: `${category} - ${name}` });
+      return Object.assign(innerRecords, { [id]: `${prefix}${name}` });
     }, records);
   }, {});
 };
