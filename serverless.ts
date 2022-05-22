@@ -57,7 +57,7 @@ const config: Serverless = {
   },
   functions: {
     hello: {
-      handler: './src/handler.hello',
+      handler: './src/handler.notify',
       events: [
         {
           http: {
