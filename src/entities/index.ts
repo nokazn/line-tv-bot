@@ -1,3 +1,5 @@
+import type { APIGatewayEvent } from 'aws-lambda';
+
 export type Program = {
   name: string;
   from: Date;
@@ -11,4 +13,9 @@ export type Program = {
 export type Response = {
   statusCode: number;
   body: string;
+};
+
+export type ResponseBody = {
+  message: string;
+  input: APIGatewayEvent;
 };
