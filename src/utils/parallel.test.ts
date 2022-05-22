@@ -1,5 +1,5 @@
 import { ResultAsync } from 'neverthrow';
-import { sleep, modifyLastElementOfList, distributeList, runPerGroup } from './runPerGroup';
+import { sleep, modifyLastElementOfList, distributeList, runPerGroup } from './parallel';
 import type { TestCase, Arguments } from '~/types';
 
 describe('sleep', () => {
