@@ -19,5 +19,6 @@ export type ProgramKeyword = z.infer<typeof programKeyword>;
 
 /**
  * ----------------------------------------------------------------------------------------------------
+ * @description 検索する番組のキーワードの情報の型を検証する
  */
 export declare const validateProgramKeyword: (keyword: unknown) => Result<ProgramKeyword, ZodError>;

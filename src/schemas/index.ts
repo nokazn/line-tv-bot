@@ -1,2 +1,2 @@
-export { validateProgramKeyword, BroadcasterType, ProgramKeyword } from './aws';
+export { validateProgramKeyword, BroadcasterType, ProgramKeyword } from './domain';
 export { validateEnv, Env } from './env';

@@ -10,6 +10,9 @@ export const fetch = (url: string, init?: RequestInit): ResultAsync<string, Fetc
 
 type Primitive = string | number | boolean;
 
+/**
+ * @description URL をオブジェクトを生成する
+ */
 export const generateUrl =
   (baseUrl: string, ...paths: string[]) =>
   (params?: Dictionary<Primitive>): URL => {

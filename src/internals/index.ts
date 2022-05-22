@@ -4,6 +4,9 @@ import { convertKeywordToSearchUrl } from './convert';
 import { searchPrograms, getPrograms } from './scrape';
 import { pushMessages } from './notify';
 
+/**
+ * @description 検索する番組の候補を取得し、スクレイピングして番組を検索して通知する
+ */
 export const notifyPrograms = () => {
   return getProgramKeywords()
     .map((keywords) => keywords.map(convertKeywordToSearchUrl))

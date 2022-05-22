@@ -11,6 +11,9 @@ const client = new Client({
   channelSecret: ENV.LINE_CHANNEL_SECRET,
 });
 
+/**
+ * @description Line に全メッセージを送信する
+ */
 export declare function pushMessages(
   programs: Program[][],
 ): ResultAsync<MessageAPIResponseBase, Error>;
