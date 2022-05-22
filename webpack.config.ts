@@ -1,4 +1,6 @@
-/* eslint-disable import/no-import-module-exports */
+// ビルド前に行うチェック
+import './prelude';
+
 import * as path from 'path';
 import slsw from 'serverless-webpack';
 import nodeExternals from 'webpack-node-externals';
@@ -60,4 +62,4 @@ const config: Configuration = {
   ],
 };
 
-module.exports = config;
+export default config;
