@@ -1,4 +1,4 @@
-# line-rv-bot
+# line-tv-bot
 
 テレビ番組を LINE に通知する。
 
@@ -22,6 +22,7 @@ yarn deploy
 Serverless Framework でデプロイするのに必要な以下のポリシーをアタッチした IAM ユーザーを作成する。
 
 <details>
+
 <summary>IAM ポリシー</summary>
 
 ```json
@@ -157,3 +158,6 @@ Serverless Framework でデプロイするのに必要な以下のポリシー�
 | -- | -- |
 | AWS_ACCESS_KEY_ID | IAM ユーザーのアクセスキー ID |
 | AWS_SECRET_ACCESS_KEY | IAM ユーザーのシークレットアクセスキー |
+| LINE_CHANNEL_ACCESS_TOKEN | LINE のチャンネルアクセストークン |
+| LINE_CHANNEL_SECRET | LINE のチャンネルシークレット |
+| LINE_USER_ID | LINE でメッセージを送信するユーザーの ID |

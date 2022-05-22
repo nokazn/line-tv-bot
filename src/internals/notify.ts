@@ -12,7 +12,7 @@ const client = new Client({
 });
 
 /**
- * @description Line に全メッセージを送信する
+ * @description LINE に全メッセージを送信する
  */
 export declare function pushMessages(
   programs: Program[][],
