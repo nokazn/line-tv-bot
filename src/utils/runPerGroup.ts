@@ -57,17 +57,19 @@ const runPerGroupWithPromise =
     max: number,
     init?: RunPerGroupInit,
   ) =>
-  async (targetList: readonly T[]): Promise<Result<R[], unknown>> => {
-    const distributedTargetLists = distributeList(max)(targetList);
+  async (targets: readonly T[]): Promise<Result<R[], E>> => {
+    const distributedTargetLists = distributeList(max)(targets);
     const resultValueList: R[] = [];
-    for (const innerTargetList of distributedTargetLists) {
+    for (const innerTargets of distributedTargetLists) {
       // eslint-disable-next-line no-await-in-loop
-      await fromPromiseWithError(Promise.all(innerTargetList.map(callback)))
-        .andThen((innerResultList) => combine(innerResultList))
-        .map((innerResultValueList) => resultValueList.push(...innerResultValueList))
-        .mapErr(logError('Failed to run for the targets group.', { innerTargetList }));
-      // eslint-disable-next-line no-await-in-loop
-      await sleep(init?.sleep);
+      await fromPromiseWithError(Promise.all(innerTargets.map(callback)))
+        .andThen((innerResults) => combine(innerResults))
+        .map((innerResultValues) => resultValueList.push(...innerResultValues))
+        .mapErr(logError('Failed to run for the targets group.', { innerTargets }));
+      if (init?.sleep) {
+        // eslint-disable-next-line no-await-in-loop
+        await sleep(init?.sleep);
+      }
     }
     return okAsync(resultValueList);
   };
@@ -92,7 +94,7 @@ export const runPerGroup =
     max: number,
     init?: RunPerGroupInit,
   ) =>
-  (targetList: readonly T[]): ResultAsync<R[], unknown> => {
-    const promise = runPerGroupWithPromise(callback, max, init)(targetList);
-    return fromPromiseWithError(promise).andThen((result) => result);
+  (targets: readonly T[]): ResultAsync<R[], E> => {
+    const promise = runPerGroupWithPromise<T, R, E>(callback, max, init)(targets);
+    return fromPromiseWithError<Result<R[], E>, E>(promise).andThen<R[], E>((result) => result);
   };

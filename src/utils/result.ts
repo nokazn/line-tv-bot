@@ -22,10 +22,9 @@ export const logError =
   };
 
 /**
- * @description エラー出力処理を共通化し、{@link Promise} オブジェクトを {@link ResultAsync} に変換する
- * @param promise
- * @param errorCallback
- * @returns
+ * @description
+ * - エラー出力処理を共通化し、{@link Promise} オブジェクトを {@link ResultAsync} に変換する
+ * - エラーの型を assertion させている
  */
 export const fromPromiseWithError = <T, E = Error>(
   promise: Promise<T>,
