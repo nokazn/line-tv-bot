@@ -1,4 +1,5 @@
 export * from './http';
 export * from './json';
+export { runPerGroup, distributeList } from './parallel';
 export * from './result';
-export { runPerGroup } from './parallel';
+export * from './text';

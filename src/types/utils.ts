@@ -11,7 +11,7 @@ export type Arguments<Func extends Callback> = Func extends (
   : never;
 
 export type TestCase<Input = unknown, Expected = unknown> = {
-  name: string;
+  name?: string;
   input: Input;
   expected: Expected;
 };
