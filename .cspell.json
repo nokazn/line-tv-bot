@@ -3,7 +3,8 @@
   "language": "en",
   "dictionaries": [
     "domain",
-    "packages"
+    "packages",
+    "programs"
   ],
   // List of words to be always considered correct
   "dictionaryDefinitions": [
@@ -14,6 +15,10 @@
     {
       "name": "packages",
       "path": "./.config/cspell/packages.txt"
+    },
+    {
+      "name": "programs",
+      "path": "./.config/cspell/programs.txt"
     }
   ],
   "ignorePaths": ["node_modules/**", ".config/cspell"]
