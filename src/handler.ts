@@ -1,12 +1,14 @@
 import { APIGatewayProxyHandler } from 'aws-lambda';
 import 'source-map-support/register';
 
-import { notifyPrograms } from './internals';
+import { notifyPrograms } from '~/internals';
+import { Line } from '~/services';
 import { toJson } from '~/utils';
 import type { Response, ResponseBody } from '~/entities';
 
 export const notify: APIGatewayProxyHandler = async (event) => {
-  const response = await notifyPrograms()
+  const client = new Line();
+  const response = await notifyPrograms(client)
     .map((): Response => {
       return {
         statusCode: 200,

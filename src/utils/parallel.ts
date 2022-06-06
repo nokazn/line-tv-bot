@@ -27,7 +27,6 @@ export const modifyLastElementOfList = <T>(list: readonly T[], element: T) => {
  * @example
  * distributeList(2)([1, 2, 3, 4, 5]); // => [[1, 2], [3, 4], [5]]
  * distributeList(3)([1, 2, 3, 4, 5]); // => [[1, 2, 3], [4, 5]]
- * @package
  */
 export const distributeList =
   (max: number) =>
