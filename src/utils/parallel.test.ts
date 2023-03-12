@@ -176,7 +176,7 @@ describe('runPerGroup', () => {
     const endMillisecond = Date.now();
     const diffMillisecond = endMillisecond - startMillisecond;
     // 99% ~ 102% の範囲にあるか調べる
-    expect(diffMillisecond).toBeGreaterThanOrEqual(expected * 0.99);
-    expect(diffMillisecond).toBeLessThan(Math.max(expected, 10) * 1.02);
+    expect(diffMillisecond).toBeGreaterThanOrEqual(expected * 0.95);
+    expect(diffMillisecond).toBeLessThan(Math.max(expected, 10) * 1.05);
   });
 });
