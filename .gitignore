@@ -1,6 +1,11 @@
 # Package directories
 node_modules
 jspm_packages
+/.yarn/*
+!/.yarn/patches
+!/.yarn/plugins
+!/.yarn/releases
+!/.yarn/sdks
 
 # Serverless directories
 .serverless
