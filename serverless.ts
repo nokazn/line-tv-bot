@@ -31,7 +31,7 @@ const config: Serverless = {
   ],
   provider: {
     name: 'aws',
-    runtime: 'nodejs14.x',
+    runtime: 'nodejs18.x',
     stage: process.env.NODE_ENV,
     // eslint-disable-next-line no-template-curly-in-string
     region: "${opt:region, 'ap-northeast-1'}",
