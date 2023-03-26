@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { logger } from '../services';
 
 const envSchema = z.object({
   NODE_ENV: z.union([z.literal('development'), z.literal('production')]).optional(),
@@ -23,6 +22,5 @@ export const validateEnv = (input: unknown) => {
   if (result.success) {
     return result.data;
   }
-  logger.error('Environment variables are not set correctly');
   throw result.error;
 };
