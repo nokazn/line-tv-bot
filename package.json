@@ -13,7 +13,7 @@
     "prepare": "husky install",
     "ci": "run-s -c static-check test:ci",
     "static-check": "run-s -c \"check:*\"",
-    "check:format:": "yarn format --check",
+    "check:format": "yarn format --check",
     "check:spell": "cspell \"**/*.{t,j}s\" --no-progress",
     "check:lint": "eslint \"**/*.{t,j}s\" --ignore-path .eslintignore --report-unused-disable-directives",
     "check:type": "tsc --noEmit",
