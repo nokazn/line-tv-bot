@@ -65,6 +65,7 @@
     "regenerator-runtime": "^0.13.9",
     "serverless": "^3.29.0",
     "serverless-create-global-dynamodb-table": "^3.1.1",
+    "serverless-dotenv-plugin": "^6.0.0",
     "serverless-iam-roles-per-function": "^3.2.0",
     "serverless-offline": "^12.0.4",
     "serverless-prune-plugin": "^2.0.2",

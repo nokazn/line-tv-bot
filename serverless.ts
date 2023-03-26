@@ -23,11 +23,12 @@ const config: Serverless = {
   },
   // Add the serverless-webpack plugin
   plugins: [
-    'serverless-webpack',
-    'serverless-offline',
-    'serverless-iam-roles-per-function',
     'serverless-create-global-dynamodb-table',
+    'serverless-dotenv-plugin',
+    'serverless-iam-roles-per-function',
+    'serverless-offline',
     'serverless-prune-plugin',
+    'serverless-webpack',
   ],
   provider: {
     name: 'aws',
@@ -56,13 +57,13 @@ const config: Serverless = {
     lambdaHashingVersion: 20201221,
   },
   functions: {
-    hello: {
+    notify: {
       handler: './src/handler.notify',
       events: [
         {
           http: {
             method: 'get',
-            path: 'hello',
+            path: 'notify',
           },
         },
       ],
