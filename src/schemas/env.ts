@@ -15,7 +15,7 @@ export type Env = z.infer<typeof envSchema>;
 /**
  * ----------------------------------------------------------------------------------------------------
  * @description 環境変数が正しく設定されていない場合は例外を投げる
- * @throws {@link z.ZodError}
+ * @throws {@link z.ZodError<Env>}
  */
 export const validateEnv = (input: unknown) => {
   const result = envSchema.safeParse(input);
