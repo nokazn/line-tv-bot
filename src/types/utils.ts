@@ -1,7 +1,8 @@
 export type Dictionary<Value = unknown> = Record<string, Value>;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any -- すべて受け入れる型を作るため
-type Callback = (...args: any[]) => unknown;
+export type Nullish<T> = T | null | undefined;
+
+type Callback = (...args: never[]) => unknown;
 export type Arguments<Func extends Callback> = Func extends (
   ...args: infer Args
 ) => infer ReturnValue
@@ -15,3 +16,5 @@ export type TestCase<Input = unknown, Expected = unknown> = {
   input: Input;
   expected: Expected;
 };
+
+export type ValueOf<T> = T[keyof T];
