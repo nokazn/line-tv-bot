@@ -1,10 +1,14 @@
 import { z, ZodError } from 'zod';
 import type { Result } from 'neverthrow';
+import { ChannelTypes } from '~/types/program';
+import { Nullish } from '~/types';
 
-const broadcasterType = z.union([z.literal('地上波'), z.literal('BS'), z.literal('CS')]);
+const channelType = z
+  .union([z.literal('地上波'), z.literal('BSデジタル'), z.literal('BS4K'), z.literal('CS')])
+  .nullish() satisfies z.ZodType<Nullish<keyof ChannelTypes>>;
 
 const programKeyword = z.object({
-  broadcasterType,
+  channelType,
   broadcasterNames: z.array(z.string()),
   includedWords: z.array(z.string()),
   excludedWords: z.array(z.string()),
@@ -13,7 +17,7 @@ const programKeyword = z.object({
 /**
  * ----------------------------------------------------------------------------------------------------
  */
-export type BroadcasterType = z.infer<typeof broadcasterType>;
+export type BroadcasterType = z.infer<typeof channelType>;
 
 export type ProgramKeyword = z.infer<typeof programKeyword>;
 

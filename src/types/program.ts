@@ -1,3 +1,5 @@
+import { ValueOf } from './utils';
+
 type NewsGenres = {
   '00': 'ニュース／報道 - 定時・総合';
   '01': 'ニュース／報道 - 天気';
@@ -159,3 +161,12 @@ export type ProgramGenres = {
   welfare: WelfareGenres;
   other: OtherGenres;
 };
+
+export type ChannelTypes = {
+  地上波: 2;
+  BSデジタル: 3;
+  BS4K: 5;
+  CS: 120;
+};
+
+export type ChannelTypeValues = ValueOf<ChannelTypes>;
