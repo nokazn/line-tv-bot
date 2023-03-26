@@ -10,6 +10,22 @@ describe('generateUrl', () => {
     },
     {
       name: 'with empty query parameters',
+      input: [
+        ['https://example.com/'],
+        [
+          {
+            a: 0,
+            b: undefined,
+            c: null,
+            d: '',
+            e: false,
+          },
+        ],
+      ],
+      expected: 'https://example.com/?a=0&e=false',
+    },
+    {
+      name: 'with no query parameters',
       input: [['https://example.com/'], [{}]],
       expected: 'https://example.com/',
     },
