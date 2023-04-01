@@ -30,11 +30,11 @@ export const toTimeRange = (start: Date, end: Date) => {
  * @package
  */
 export const generateProgramText = <
-  T extends Pick<Program, 'from' | 'to' | 'broadcaster' | 'description'>,
+  T extends Pick<Program, 'from' | 'to' | 'channel' | 'description'>,
 >(
   program: T,
 ): string => {
-  return `${toTimeRange(program.from, program.to)}\n${program.broadcaster}\n${program.description}`;
+  return `${toTimeRange(program.from, program.to)}\n${program.channel}\n${program.description}`;
 };
 
 /**

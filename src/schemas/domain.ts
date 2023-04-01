@@ -9,7 +9,8 @@ const channelType = z
 
 const programKeyword = z.object({
   channelType,
-  broadcasterNames: z.array(z.string()),
+  // TODO: あとで絞り方考える
+  channelNames: z.array(z.string()).optional(),
   includedWords: z.array(z.string()),
   excludedWords: z.array(z.string()),
 });
@@ -17,7 +18,7 @@ const programKeyword = z.object({
 /**
  * ----------------------------------------------------------------------------------------------------
  */
-export type BroadcasterType = z.infer<typeof channelType>;
+export type ChannelType = z.infer<typeof channelType>;
 
 export type ProgramKeyword = z.infer<typeof programKeyword>;
 

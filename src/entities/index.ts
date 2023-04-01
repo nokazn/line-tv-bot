@@ -4,7 +4,7 @@ export type Program = {
   name: string;
   from: Date;
   to: Date;
-  broadcaster: string;
+  channel: string;
   overview: string;
   description: string;
   url: string;
