@@ -78,6 +78,14 @@ export class Browser {
     return fromPromiseWithError(this.#browser.close()).map(() => value);
   }
 
+  closeAndMapErr<T, E = unknown>(error: E): ResultAsync<T, E> {
+    if (this.#browser == null) {
+      // TODO: Errorオブジェクトにする
+      return errAsync(error);
+    }
+    return fromPromiseWithError<void, E>(this.#browser.close()).andThen(() => errAsync(error));
+  }
+
   close(): ResultAsync<void, unknown> {
     return this.closeAndMap(undefined);
   }

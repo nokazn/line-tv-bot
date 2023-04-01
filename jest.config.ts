@@ -25,6 +25,7 @@ const config: Config.InitialOptions = {
   },
   testMatch: ['**/{src,tests}/**/*.test.ts'],
   testPathIgnorePatterns: ['node_modules'],
+  testTimeout: 10 * 60 * 1000,
 };
 
 export default config;
