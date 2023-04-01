@@ -2,7 +2,7 @@ import { Client } from '@line/bot-sdk';
 import type * as line from '@line/bot-sdk';
 
 import { ENV } from '~/constants';
-import { fromPromiseWithError } from '~/utils';
+import { CaughtError, fromPromiseWithError } from '~/utils';
 
 export class Line {
   client: Client;
@@ -15,6 +15,8 @@ export class Line {
   }
 
   push(messages: line.Message[]) {
-    return fromPromiseWithError(this.client.pushMessage(ENV.LINE_USER_ID, messages));
+    return fromPromiseWithError(this.client.pushMessage(ENV.LINE_USER_ID, messages)).mapErr(
+      (rejected) => new CaughtError(rejected),
+    );
   }
 }

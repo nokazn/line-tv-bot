@@ -1,5 +1,5 @@
 import { Result, ResultAsync, okAsync, combine } from 'neverthrow';
-import { fromPromiseWithError, logError } from './result';
+import { fromPromiseWithError, logError, CaughtError } from './result';
 
 type RunPerGroupCallback<T, R, E = unknown> = (target: T) => ResultAsync<R, E>;
 type RunPerGroupInit = { sleep: number };
@@ -93,7 +93,9 @@ export const runPerGroup =
     max: number,
     init?: RunPerGroupInit,
   ) =>
-  (targets: readonly T[]): ResultAsync<R[], E> => {
+  (targets: readonly T[]): ResultAsync<R[], CaughtError> => {
     const promise = runPerGroupWithPromise<T, R, E>(callback, max, init)(targets);
-    return fromPromiseWithError<Result<R[], E>, E>(promise).andThen<R[], E>((result) => result);
+    return fromPromiseWithError(promise)
+      .andThen((result) => result)
+      .mapErr((rejected) => new CaughtError(rejected));
   };
