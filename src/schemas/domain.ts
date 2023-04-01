@@ -12,7 +12,7 @@ const programKeyword = z.object({
   // TODO: あとで絞り方考える
   channelNames: z.array(z.string()).optional(),
   includedWords: z.array(z.string()),
-  excludedWords: z.array(z.string()),
+  excludedWords: z.array(z.string()).optional(),
 });
 
 /**

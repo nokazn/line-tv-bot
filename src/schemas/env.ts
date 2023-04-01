@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 const envSchema = z.object({
   NODE_ENV: z.union([z.literal('development'), z.literal('production')]).optional(),
+  TV_GUIDE_URL: z.string().url().default('https://tvguide.myjcom.jp/search/event'),
   LINE_CHANNEL_ACCESS_TOKEN: z.string(),
   LINE_CHANNEL_SECRET: z.string(),
   LINE_USER_ID: z.string(),
