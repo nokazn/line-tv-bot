@@ -5,9 +5,8 @@ export type Program = {
   from: Date;
   to: Date;
   channel: string;
-  overview: string;
-  description: string;
-  url: string;
+  summary: string | null;
+  url: URL;
 };
 
 export type Response = {

@@ -45,7 +45,7 @@ describe('generateProgramText', () => {
             from: new Date(2022, 0, 1, 10, 0),
             to: new Date(2022, 0, 1, 11, 45),
             channel: 'BBC',
-            description: 'News',
+            summary: 'News',
           },
         ],
       ],

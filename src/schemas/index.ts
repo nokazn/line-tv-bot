@@ -1,2 +1,2 @@
-export { validateProgramKeyword, ChannelType, ProgramKeyword } from './domain';
+export * from './domain';
 export { validateEnv, Env } from './env';
