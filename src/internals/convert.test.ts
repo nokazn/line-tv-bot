@@ -2,7 +2,7 @@ import type { Arguments, TestCase } from '../types';
 import { convertKeywordToSearchUrl, encodeMultipleKeywords, extractChannelType } from './convert';
 
 describe('encodeMultipleKeywords', () => {
-  it.each<TestCase<Arguments<typeof encodeMultipleKeywords>, string>>([
+  it.each([
     {
       input: [[['a', 'b', 'c']]],
       expected: 'a%20b%20c',
@@ -28,14 +28,17 @@ describe('encodeMultipleKeywords', () => {
       input: [[[]]],
       expected: '',
     },
-  ])("should be '$expected'", ({ input, expected }) => {
-    expect.assertions(1);
-    expect(encodeMultipleKeywords(...input[0])).toBe(expected);
-  });
+  ] satisfies TestCase<Arguments<typeof encodeMultipleKeywords>, string>[])(
+    "should be '$expected'",
+    ({ input, expected }) => {
+      expect.assertions(1);
+      expect(encodeMultipleKeywords(...input[0])).toBe(expected);
+    },
+  );
 });
 
 describe('extractChannelType', () => {
-  it.each<TestCase<Arguments<typeof extractChannelType>>>([
+  it.each([
     {
       input: [['BSデジタル']],
       expected: 3,
@@ -48,14 +51,17 @@ describe('extractChannelType', () => {
       input: [[null]],
       expected: undefined,
     },
-  ])("should be '$expected'", ({ input, expected }) => {
-    expect.assertions(1);
-    expect(extractChannelType(...input[0])).toBe(expected);
-  });
+  ] satisfies TestCase<Arguments<typeof extractChannelType>>[])(
+    "should be '$expected'",
+    ({ input, expected }) => {
+      expect.assertions(1);
+      expect(extractChannelType(input[0][0])).toBe(expected);
+    },
+  );
 });
 
 describe('convertKeywordToSearchUrl', () => {
-  it.each<TestCase<Arguments<typeof convertKeywordToSearchUrl>>>([
+  it.each([
     {
       input: [
         ['http://example.com'],
@@ -81,8 +87,11 @@ describe('convertKeywordToSearchUrl', () => {
       ],
       expected: 'http://example.com/',
     },
-  ])("should be '$expected'", ({ input, expected }) => {
-    expect.assertions(1);
-    expect(convertKeywordToSearchUrl(...input[0])(...input[1]).href).toBe(expected);
-  });
+  ] satisfies TestCase<Arguments<typeof convertKeywordToSearchUrl>>[])(
+    "should be '$expected'",
+    ({ input, expected }) => {
+      expect.assertions(1);
+      expect(convertKeywordToSearchUrl(...input[0])(input[1][0]).href).toBe(expected);
+    },
+  );
 });

@@ -3,7 +3,7 @@ import { sleep, modifyLastElementOfList, distributeList, runPerGroup } from './p
 import type { TestCase, Arguments } from '~/types';
 
 describe('sleep', () => {
-  it.each<TestCase<Arguments<typeof sleep>, number>>([
+  it.each([
     {
       name: 'wait 500ms',
       input: [[500]],
@@ -19,7 +19,7 @@ describe('sleep', () => {
       input: [[-1000]],
       expected: 0,
     },
-  ])('$name', async ({ input, expected }) => {
+  ] satisfies TestCase<Arguments<typeof sleep>, number>[])('$name', async ({ input, expected }) => {
     expect.assertions(2);
     const startMillisecond = Date.now();
     await sleep(input[0][0]);
@@ -43,7 +43,7 @@ describe('modifyLastElementOfList', () => {
 describe('distributeList', () => {
   const list = [1, 2, 3, 4, 5, 6, 7, 8];
 
-  it.each<TestCase<Arguments<typeof distributeList>, unknown[]>>([
+  it.each([
     {
       name: 'distribute array with 8 elements into arrays upto 0 element',
       input: [[0], [list]],
@@ -127,10 +127,13 @@ describe('distributeList', () => {
       input: [[NaN], [list]],
       expected: [[1, 2, 3, 4, 5, 6, 7, 8]],
     },
-  ])('$name', ({ input, expected }) => {
-    expect.assertions(1);
-    expect(distributeList(input[0][0])(...input[1])).toStrictEqual(expected);
-  });
+  ] satisfies TestCase<Arguments<typeof distributeList>, unknown[]>[])(
+    '$name',
+    ({ input, expected }) => {
+      expect.assertions(1);
+      expect(distributeList(input[0][0])(...input[1])).toStrictEqual(expected);
+    },
+  );
 });
 
 describe('runPerGroup', () => {
@@ -138,7 +141,7 @@ describe('runPerGroup', () => {
   const WAITING_TIME = 300;
   const waitingTimeList = [WAITING_TIME, WAITING_TIME, WAITING_TIME, WAITING_TIME, WAITING_TIME];
 
-  it.each<TestCase<number, number>>([
+  it.each([
     {
       name: 'run 5 tasks, 1 at a time',
       input: 1,
@@ -169,7 +172,7 @@ describe('runPerGroup', () => {
       input: 6,
       expected: WAITING_TIME * 1,
     },
-  ])('$name', async ({ input, expected }) => {
+  ] satisfies TestCase<number, number>[])('$name', async ({ input, expected }) => {
     expect.assertions(2);
     const startMillisecond = Date.now();
     await runPerGroup(sleeper, input)(waitingTimeList);

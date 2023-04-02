@@ -2,7 +2,7 @@ import { abbreviateText } from './text';
 import type { Arguments, TestCase } from '../types';
 
 describe('abbreviateText', () => {
-  it.each<TestCase<Arguments<typeof abbreviateText>, string>>([
+  it.each([
     {
       input: [['', 0]],
       expected: '',
@@ -67,7 +67,7 @@ describe('abbreviateText', () => {
       input: [['This is a text.', 20]],
       expected: 'This is a text.',
     },
-  ])(
+  ] satisfies TestCase<Arguments<typeof abbreviateText>, string>[])(
     "should abbreviate '$input.0.0' to '$expected' with limit of $input.0.1 characters",
     ({ input, expected }) => {
       expect.assertions(1);

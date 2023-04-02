@@ -2,7 +2,7 @@ import { generateGoogleCalendarUrl, generateProgramText, toTimeRange } from './n
 import type { Arguments, TestCase } from '../types';
 
 describe('toTimeRange', () => {
-  it.each<TestCase<Arguments<typeof toTimeRange>, string>>([
+  it.each([
     {
       input: [[new Date(2022, 0, 1, 9, 0), new Date(2022, 0, 1, 10, 0)]],
       expected: '2022年1月1日 9:00-10:00',
@@ -27,14 +27,17 @@ describe('toTimeRange', () => {
       input: [[new Date(2022, 0, 1, 24, 45), new Date(2022, 0, 2, 5, 0)]],
       expected: '2022年1月2日 0:45-5:00',
     },
-  ])("should be '$expected'", ({ input, expected }) => {
-    expect.assertions(1);
-    expect(toTimeRange(...input[0])).toBe(expected);
-  });
+  ] satisfies TestCase<Arguments<typeof toTimeRange>, string>[])(
+    "should be '$expected'",
+    ({ input, expected }) => {
+      expect.assertions(1);
+      expect(toTimeRange(...input[0])).toBe(expected);
+    },
+  );
 });
 
 describe('generateProgramText', () => {
-  it.each<TestCase<Arguments<typeof generateProgramText>, string>>([
+  it.each([
     {
       input: [
         [
@@ -50,14 +53,17 @@ describe('generateProgramText', () => {
 BBC
 News`,
     },
-  ])('should convert to program information', ({ input, expected }) => {
-    expect.assertions(1);
-    expect(generateProgramText(...input[0])).toStrictEqual(expected);
-  });
+  ] satisfies TestCase<Arguments<typeof generateProgramText>, string>[])(
+    'should convert to program information',
+    ({ input, expected }) => {
+      expect.assertions(1);
+      expect(generateProgramText(...input[0])).toStrictEqual(expected);
+    },
+  );
 });
 
 describe('generateGoogleCalendarUrl', () => {
-  it.each<TestCase<Arguments<typeof generateGoogleCalendarUrl>, string>>([
+  it.each([
     {
       input: [
         [
@@ -71,8 +77,11 @@ describe('generateGoogleCalendarUrl', () => {
       expected:
         'https://calendar.google.com/calendar/event?action=TEMPLATE&text=F1+%E3%82%B0%E3%83%A9%E3%83%B3%E3%83%97%E3%83%AA+%E7%AC%AC1%E6%88%A6&dates=20220101T213000%2F20220102T020000',
     },
-  ])('should be $expected', ({ input, expected }) => {
-    expect.assertions(1);
-    expect(generateGoogleCalendarUrl(...input[0])).toStrictEqual(expected);
-  });
+  ] satisfies TestCase<Arguments<typeof generateGoogleCalendarUrl>, string>[])(
+    'should be $expected',
+    ({ input, expected }) => {
+      expect.assertions(1);
+      expect(generateGoogleCalendarUrl(...input[0])).toStrictEqual(expected);
+    },
+  );
 });
