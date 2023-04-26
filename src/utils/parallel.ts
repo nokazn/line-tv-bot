@@ -97,5 +97,6 @@ export const runPerGroup =
     const promise = runPerGroupWithPromise<T, R, E>(callback, max, init)(targets);
     return fromPromiseWithError(promise)
       .andThen((result) => result)
-      .mapErr((rejected) => new CaughtError(rejected));
+      .mapErr((rejected) => new CaughtError(rejected))
+      .mapErr(logError());
   };
