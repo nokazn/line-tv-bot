@@ -1,3 +1,6 @@
+import { Result } from 'neverthrow';
+import { z } from 'zod';
+
 export type Dictionary<Value = unknown> = Record<string, Value>;
 
 export type Nullish<T> = T | null | undefined;
@@ -17,4 +20,7 @@ export type TestCase<Input = unknown, Expected = unknown> = {
   expected: Expected;
 };
 
-export type ValueOf<T> = T[keyof T];
+/** @description 配列の要素、またはオブジェクトの要素のユニオン型を返す */
+export type ValueOf<T> = T extends (infer U)[] ? U : T[keyof T];
+
+export type ZodResult<T> = Result<T, z.ZodError<T>>;
