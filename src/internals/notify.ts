@@ -7,6 +7,7 @@ import type { Line } from '~/services';
 import type { Program } from '~/entities';
 
 const GOOGLE_CALENDAR_BASE_URL = 'https://calendar.google.com/calendar/event';
+const NEW_LINE = '\n';
 
 /**
  * ----------------------------------------------------------------------------------------------------
@@ -29,12 +30,13 @@ export const toTimeRange = (start: Date, end: Date) => {
  * @description 番組の詳細情報を含む文字列を返す
  * @package
  */
-export const generateProgramText = <
-  T extends Pick<Program, 'from' | 'to' | 'channel' | 'description'>,
->(
-  program: T,
+export const generateProgramText = (
+  program: Pick<Program, 'from' | 'to' | 'channel' | 'summary'>,
 ): string => {
-  return `${toTimeRange(program.from, program.to)}\n${program.channel}\n${program.description}`;
+  const texts = [toTimeRange(program.from, program.to), program.channel, program.summary].filter(
+    Boolean,
+  );
+  return texts.join(NEW_LINE);
 };
 
 /**
@@ -82,7 +84,7 @@ const generateCarouselMessages =
             {
               type: 'uri',
               label: '詳細',
-              uri: program.url,
+              uri: program.url.href,
             },
           ],
         }),
