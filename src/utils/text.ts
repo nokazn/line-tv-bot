@@ -1,3 +1,5 @@
+import { Nullish } from '~/types';
+
 const ELLIPSIS = '...';
 
 /**
@@ -16,4 +18,12 @@ export const abbreviateText = (text: string, max: number) => {
     return text.slice(0, max);
   }
   return `${text.slice(0, max - minimumLength)}${ELLIPSIS}`;
+};
+
+/**
+ * @description 前後のスペースと、途中の複数個のスペースを削除する
+ */
+export const trimText = (text: Nullish<string>) => {
+  // eslint-disable-next-line no-irregular-whitespace
+  return text?.trim().replace(/(?:\s|　){2,}/g, ' ');
 };

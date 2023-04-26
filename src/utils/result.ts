@@ -2,7 +2,7 @@ import { ResultAsync, ok, err } from 'neverthrow';
 import { SafeParseReturnType } from 'zod';
 
 import { logger } from '../services';
-import type { Dictionary } from '../types';
+import type { Dictionary, ZodResult } from '../types';
 
 type ErrorCallback<E = unknown> = (error: E) => void;
 
@@ -25,8 +25,8 @@ export const logError =
   (message?: string, params?: Dictionary) =>
   <E = unknown>(caught: E) => {
     const error = new CaughtError(caught);
-    logger.error({
-      message: message ?? error.message,
+    logger.error(message ?? error.message, {
+      caught,
       error,
       params,
     });
@@ -57,14 +57,14 @@ export const fromPromiseWithError = <T, E = unknown>(
 /**
  * ----------------------------------------------------------------------------------------------------
  */
-type Validator<T> = (data: unknown) => SafeParseReturnType<unknown, T>;
+type Validator<T> = (data: unknown) => SafeParseReturnType<T, T>;
 
 /**
  * @description validator {@link SafeParseReturnType} を {@link Result} 型にする
  */
 export const validatorToResult =
   <T>(validator: Validator<T>) =>
-  (data: unknown) => {
+  (data: unknown): ZodResult<T> => {
     const result = validator(data);
-    return result.success ? ok(result) : err(result);
+    return result.success ? ok(result.data) : err(result.error);
   };

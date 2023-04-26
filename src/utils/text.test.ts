@@ -1,4 +1,4 @@
-import { abbreviateText } from './text';
+import { abbreviateText, trimText } from './text';
 import type { Arguments, TestCase } from '../types';
 
 describe('abbreviateText', () => {
@@ -72,6 +72,41 @@ describe('abbreviateText', () => {
     ({ input, expected }) => {
       expect.assertions(1);
       expect(abbreviateText(...input[0])).toBe(expected);
+    },
+  );
+});
+
+describe('trimText', () => {
+  it.each([
+    {
+      input: [['']],
+      expected: '',
+    },
+    {
+      input: [['  ']],
+      expected: '',
+    },
+    {
+      input: [[' text ']],
+      expected: 'text',
+    },
+    {
+      input: [
+        [
+          // eslint-disable-next-line no-irregular-whitespace
+          ` some　 texts with       
+        multiple   spaces \t 
+        
+        `,
+        ],
+      ],
+      expected: 'some texts with multiple spaces',
+    },
+  ] satisfies TestCase<Arguments<typeof trimText>, string>[])(
+    'should be $expected',
+    ({ input, expected }) => {
+      expect.assertions(1);
+      expect(trimText(...input[0])).toBe(expected);
     },
   );
 });
